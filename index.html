@@ -4,110 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KaemKaar – Work Near You</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --cream: #EDE0CC;
-  --red: #B22222;
-  --dark: #1A1008;
-  --muted: #7A6A55;
-  --white: #FDFAF4;
-}
+  :root {
+    --cream: #EDE0CC;
+    --red: #B22222;
+    --red-light: #C8392A;
+    --dark: #1A1008;
+    --muted: #7A6A55;
+    --card-bg: #F5ECD8;
+    --white: #FDFAF4;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(237, 224, 204, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(178,34,34,0.12);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--red);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .nav-btn {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+  }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+  }
 
-nav{
-  position:fixed;top:0;width:100%;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1rem 5%;
-  background:rgba(237,224,204,0.9);
-}
-.nav-logo{font-weight:900;color:var(--red);}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{text-decoration:none;color:var(--muted);font-size:0.85rem;}
+  .hero-content { max-width: 680px; }
 
-.hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:8rem 5% 5rem;
-}
+  .hero-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid rgba(178,34,34,0.3);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
 
-.hero-content{max-width:600px;}
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+  }
 
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:3.5rem;
-  line-height:1.1;
-}
+  .hero h1 span { color: var(--red); }
 
-.hero h1 span{color:var(--red);}
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 520px;
+  }
 
-.hero-sub{
-  margin-top:1.5rem;
-  color:var(--muted);
-  line-height:1.7;
-}
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem;
+  }
 
-.hero-actions{margin-top:2rem;display:flex;gap:1rem;}
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+  }
 
-.btn{
-  padding:0.8rem 1.5rem;
-  border-radius:50px;
-  text-decoration:none;
-  font-size:0.85rem;
-}
+  .btn-secondary {
+    border: 1.5px solid rgba(26,16,8,0.2);
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--dark);
+  }
 
-.btn-primary{background:var(--red);color:white;}
-.btn-secondary{border:1px solid #ccc;color:var(--dark);}
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex; gap: 3rem;
+  }
 
-.hero-stats{
-  margin-top:3rem;
-  display:flex;
-  gap:2rem;
-}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--red);
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
 
-.stat-num{color:var(--red);font-weight:700;font-size:1.5rem;}
-.stat-label{font-size:0.7rem;color:var(--muted);}
+  section { padding: 6rem 5%; }
 
-section{padding:5rem 5%;}
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
 
-.section-title{
-  font-family:'Playfair Display',serif;
-  font-size:2rem;
-  margin-bottom:1rem;
-}
+  .section-body {
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.8;
+  }
 
-.section-body{color:var(--muted);max-width:600px;line-height:1.7;}
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
 
-.about-list{margin-top:2rem;list-style:none;}
-.about-list li{margin-bottom:1rem;color:var(--muted);}
+  .feature-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+  }
 
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:1.5rem;
-  margin-top:2rem;
-}
-
-.card{
-  background:white;
-  padding:1.5rem;
-  border-radius:15px;
-}
-
-footer{
-  padding:2rem 5%;
-  display:flex;
-  justify-content:space-between;
-  border-top:1px solid #ddd;
-}
+  footer {
+    padding: 3rem 5%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(26,16,8,0.1);
+  }
 </style>
 </head>
-
 <body>
 
 <nav>
@@ -115,30 +171,32 @@ footer{
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#features">Features</a></li>
+    <li><a href="#" class="nav-btn">Get Started</a></li>
   </ul>
 </nav>
 
 <section class="hero">
   <div class="hero-content">
+    <span class="hero-tag">👷 Work Near You</span>
     <h1>Find Work.<br>Hire <span>Local.</span></h1>
 
     <p class="hero-sub">
-      Jammu & Kashmir's first gig marketplace. Kaem Kaar connects skilled workers with local employers — removing middlemen, increasing income, and enabling flexible work.
+      Jammu & Kashmir's first gig marketplace. Kaem Kaar connects workers and hirers across J&K — eliminating middlemen, formalizing the informal economy, and creating fair, flexible income for Kashmir's unemployed youth.
     </p>
 
     <div class="hero-actions">
-      <a href="#" class="btn btn-primary">Post a Job</a>
-      <a href="#about" class="btn btn-secondary">Learn More</a>
+      <a href="#" class="btn-primary">Post a Job →</a>
+      <a href="#about" class="btn-secondary">Learn More</a>
     </div>
 
     <div class="hero-stats">
       <div>
         <div class="stat-num">6.1%</div>
-        <div class="stat-label">Unemployment</div>
+        <div class="stat-label">Overall Unemployment</div>
       </div>
       <div>
         <div class="stat-num">32%</div>
-        <div class="stat-label">Youth Unemployment</div>
+        <div class="stat-label">Urban Youth Unemployment</div>
       </div>
       <div>
         <div class="stat-num">30%</div>
@@ -150,63 +208,48 @@ footer{
 
 <section id="about">
   <h2 class="section-title">What is KaemKaar</h2>
-
   <p class="section-body">
-    Kaem Kaar is a mobile-first marketplace connecting workers and hirers across J&K. It eliminates middlemen, formalizes informal work, and creates fair income opportunities.
+    Kaem Kaar is a mobile-first marketplace connecting workers and hirers across J&K — eliminating middlemen and enabling people to earn on their own terms.
   </p>
-
-  <ul class="about-list">
-    <li>No reliable platform to connect workers and employers</li>
-    <li>Middlemen take up to 30% of wages</li>
-    <li>Workers lose income due to no visibility</li>
-    <li>Educated youth lack local earning opportunities</li>
-  </ul>
 </section>
 
 <section>
   <h2 class="section-title">The Problem</h2>
-
   <p class="section-body">
-    Kashmir has one of India's highest educated unemployment rates. Despite demand, there is no digital infrastructure connecting work to workers efficiently.
+    J&K has one of India's highest educated unemployment rates. Yet households struggle to find reliable help, businesses overpay, and skilled workers lose income daily due to lack of digital infrastructure.
   </p>
 </section>
 
 <section id="features">
   <h2 class="section-title">Our Solution</h2>
-
   <p class="section-body">
-    Kaem Kaar transforms the informal economy into a transparent, digital, and merit-based system.
+    Kaem Kaar transforms Kashmir’s informal job system into a transparent, fast, and merit-based digital marketplace.
   </p>
 
-  <div class="features">
-    <div class="card">
+  <div class="features-grid">
+    <div class="feature-card">
       <h3>Hyperlocal Matching</h3>
-      <p>Find jobs and workers nearby instantly.</p>
+      <p>Find workers and jobs within your area instantly — no agents, no delays.</p>
     </div>
-
-    <div class="card">
+    <div class="feature-card">
       <h3>Instant Hiring</h3>
-      <p>Hire within minutes for flexible work.</p>
+      <p>Post a job and hire within minutes for daily or flexible work.</p>
     </div>
-
-    <div class="card">
+    <div class="feature-card">
       <h3>Built-in Chat</h3>
-      <p>Direct communication. No middlemen.</p>
+      <p>Direct communication between workers and hirers.</p>
     </div>
-
-    <div class="card">
+    <div class="feature-card">
       <h3>Verified Profiles</h3>
-      <p>Trust through identity and ratings.</p>
+      <p>Trust through verified identities and ratings.</p>
     </div>
-
-    <div class="card">
+    <div class="feature-card">
       <h3>Job Analytics</h3>
-      <p>Track hiring and responses easily.</p>
+      <p>Track applications and hiring performance.</p>
     </div>
-
-    <div class="card">
+    <div class="feature-card">
       <h3>Community First</h3>
-      <p>Built to empower local workers.</p>
+      <p>Designed to empower local workers.</p>
     </div>
   </div>
 </section>
