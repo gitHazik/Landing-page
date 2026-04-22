@@ -7,27 +7,464 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* SAME CSS — unchanged */
-:root {
-  --cream: #EDE0CC;
-  --red: #B22222;
-  --red-light: #C8392A;
-  --dark: #1A1008;
-  --muted: #7A6A55;
-  --card-bg: #F5ECD8;
-  --white: #FDFAF4;
-}
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--cream);
-  color: var(--dark);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-}
+  :root {
+    --cream: #EDE0CC;
+    --red: #B22222;
+    --red-light: #C8392A;
+    --dark: #1A1008;
+    --muted: #7A6A55;
+    --card-bg: #F5ECD8;
+    --white: #FDFAF4;
+  }
 
-/* (keeping rest exactly same as your original — skipped here for brevity in explanation, but assume ALL styles unchanged) */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(237, 224, 204, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(178,34,34,0.12);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+
+  .nav-btn {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+  .nav-btn:hover { background: var(--dark) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(178,34,34,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 680px; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid rgba(178,34,34,0.3);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--dark);
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 span { color: var(--red); }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 520px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn-primary:hover { background: var(--dark); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--dark);
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(26,16,8,0.2);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex; gap: 3rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+  }
+
+  .hero-visual {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .phone-mockup {
+    background: var(--dark);
+    border-radius: 36px;
+    padding: 12px;
+    box-shadow: 0 40px 80px rgba(26,16,8,0.25), 0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 26px;
+    padding: 2rem 1.5rem;
+    min-height: 500px;
+  }
+
+  .phone-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .phone-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: var(--dark); }
+  .phone-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--red); }
+
+  .phone-greeting { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .phone-hello { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
+
+  .phone-cards { display: flex; gap: 0.8rem; margin-bottom: 1rem; }
+  .phone-card {
+    flex: 1;
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid rgba(178,34,34,0.1);
+  }
+  .phone-card-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .phone-card-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .phone-card-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--dark); }
+
+  .phone-action {
+    background: var(--red);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 0.9rem 1rem;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .phone-action-ghost {
+    background: var(--card-bg);
+    border: 1px solid rgba(26,16,8,0.1);
+    color: var(--dark);
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5%; }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    letter-spacing: -1px;
+    max-width: 560px;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 600px;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--white);
+    border-radius: 32px;
+    margin: 0 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text { padding: 4rem; }
+  .about-right { padding: 4rem 4rem 4rem 0; }
+
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--dark);
+    border-left: 3px solid var(--red);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-list { list-style: none; }
+  .about-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(26,16,8,0.07);
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .about-list li:last-child { border-bottom: none; }
+  .about-list .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2.2rem;
+    border: 1px solid rgba(26,16,8,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,16,8,0.1); }
+  .feature-card:hover::after { transform: scaleX(1); }
+
+  .feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.7rem;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* TEAM */
+  .team { background: var(--dark); border-radius: 32px; margin: 0 2%; }
+  .team .section-tag { color: rgba(237,224,204,0.5); }
+  .team .section-title { color: var(--cream); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    transition: background 0.25s, transform 0.25s;
+    text-align: center;
+  }
+
+  .team-card:hover {
+    background: rgba(178,34,34,0.15);
+    border-color: rgba(178,34,34,0.4);
+    transform: translateY(-4px);
+  }
+
+  .team-avatar { display: none; }
+
+  .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .team-role {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--red);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .team-quote {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: rgba(237,224,204,0.55);
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(26,16,8,0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--red);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-visual { display: none; }
+    .hero { text-align: left; }
+    .about { grid-template-columns: 1fr; }
+    .about-right { padding: 0 4rem 4rem; }
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -48,135 +485,164 @@ body {
   <div class="hero-content">
     <span class="hero-tag">👷 Work Near You</span>
     <h1>Find Work.<br>Hire <span>Local.</span></h1>
-
     <p class="hero-sub">
-      Jammu & Kashmir's first gig marketplace. Kaem Kaar connects workers and hirers across J&K — eliminating middlemen, formalizing the informal economy, and creating fair, flexible income for Kashmir's unemployed youth.
+      Jammu & Kashmir's first gig marketplace. Kaem Kaar connects workers and hirers across J&K — eliminating middlemen, formalizing the informal economy, and creating fair, flexible income for Kashmir’s unemployed youth.
     </p>
-
     <div class="hero-actions">
       <a href="#" class="btn-primary">Post a Job →</a>
       <a href="#about" class="btn-secondary">Learn More</a>
     </div>
 
-    <!-- ADDED STATS -->
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">6.1%</div>
-        <div class="stat-label">Overall Unemployment</div>
-      </div>
-      <div>
-        <div class="stat-num">32%</div>
-        <div class="stat-label">Urban Youth Unemployment</div>
-      </div>
-      <div>
-        <div class="stat-num">30%</div>
-        <div class="stat-label">Lost to Middlemen</div>
+  </div>
+
+  <!-- Phone Mockup -->
+  <div class="hero-visual">
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="phone-bar">
+          <div class="phone-brand">Kaem Kaar</div>
+          <div class="phone-avatar"></div>
+        </div>
+        <div class="phone-greeting">Hello, 567654 👋</div>
+        <div class="phone-hello">Post a job and<br>find workers nearby.</div>
+        <div class="phone-cards">
+          <div class="phone-card">
+            <div class="phone-card-icon">💼</div>
+            <div class="phone-card-label">Jobs Posted</div>
+            <div class="phone-card-num">5</div>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-icon">💬</div>
+            <div class="phone-card-label">Chats</div>
+            <div class="phone-card-num">5</div>
+          </div>
+        </div>
+        <div class="phone-action">+ Post a Job <span>→</span></div>
+        <div class="phone-action phone-action-ghost">💼 View Your Jobs <span>→</span></div>
       </div>
     </div>
   </div>
-
-  <!-- phone mockup untouched -->
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="about">
+<section id="about" style="padding: 4rem 2%;">
+  <div class="about reveal">
     <div class="about-text">
       <p class="section-tag">What is KaemKaar</p>
       <h2 class="section-title">Connecting Communities Through Work</h2>
       <div class="about-quote">"Kaam Karo, Aage Badho."<br>Work. Grow. Thrive.</div>
-
       <p class="section-body">
-        Kaem Kaar is a mobile-first marketplace connecting workers and hirers across J&K — eliminating middlemen, formalizing the informal economy, and creating fair, flexible income opportunities.
+        Kaem Kaar is a mobile-first marketplace connecting workers and hirers across J&K — eliminating middlemen, formalizing the informal economy, and creating fair, flexible income opportunities for Kashmir’s unemployed youth.
       </p>
     </div>
-
     <div class="about-right">
       <ul class="about-list">
         <li><span class="dot"></span><span>No digital platform exists to connect workers and hirers directly.</span></li>
-        <li><span class="dot"></span><span>Middlemen take up to 30% of daily wages.</span></li>
-        <li><span class="dot"></span><span>Skilled workers lose income due to lack of visibility.</span></li>
-        <li><span class="dot"></span><span>Educated youth have skills but no local earning opportunities.</span></li>
+        <li><span class="dot"></span><span>Middlemen take up to 30% of daily wages, reducing worker income.</span></li>
+        <li><span class="dot"></span><span>Skilled workers lose daily earnings due to lack of visibility.</span></li>
+        <li><span class="dot"></span><span>Educated youth have skills but no local platform to earn from them.</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM SECTION (ADDED) -->
-<section>
-  <p class="section-tag">The Problem</p>
-  <h2 class="section-title">Kashmir's Employment Crisis Has No Infrastructure</h2>
-  <p class="section-body">
-    J&K has one of India's highest educated unemployment rates. Households struggle to find reliable help, businesses overpay, and skilled workers lose income daily due to inefficient word-of-mouth systems and middlemen.
-  </p>
-</section>
-
 <!-- FEATURES -->
 <section id="features">
-  <div>
+  <div class="reveal">
     <p class="section-tag">Our Features & Goals</p>
     <h2 class="section-title">Built for Real Work, Real People</h2>
-
     <p class="section-body">
-      Kaem Kaar transforms Kashmir’s informal job system into a transparent, fast, and merit-based digital marketplace.
+      Kaem Kaar transforms Kashmir’s informal job market into a transparent, fast, and merit-based digital marketplace — connecting workers and hirers directly.
     </p>
   </div>
-
   <div class="features-grid">
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <span class="feature-icon">📍</span>
       <div class="feature-title">Hyperlocal Matching</div>
       <p class="feature-desc">Find workers and jobs within your area instantly — no agents, no delays.</p>
     </div>
-
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <span class="feature-icon">⚡</span>
       <div class="feature-title">Instant Hiring</div>
-      <p class="feature-desc">Post a job and hire within minutes for daily or flexible work.</p>
+      <p class="feature-desc">Post a job and hire within minutes for daily, short-term, or flexible work.</p>
     </div>
-
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <span class="feature-icon">💬</span>
       <div class="feature-title">Built-in Chat</div>
-      <p class="feature-desc">Direct communication between workers and hirers — no middleman.</p>
+      <p class="feature-desc">Direct communication between workers and hirers — no middleman required.</p>
     </div>
-
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <span class="feature-icon">🛡️</span>
       <div class="feature-title">Verified Profiles</div>
       <p class="feature-desc">Verified identities, ratings, and work history to build trust.</p>
     </div>
-
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <span class="feature-icon">📊</span>
       <div class="feature-title">Job Analytics</div>
-      <p class="feature-desc">Track applications, responses, and hiring performance.</p>
+      <p class="feature-desc">Track applications, responses, and hiring activity in real time.</p>
     </div>
-
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <span class="feature-icon">🤝</span>
       <div class="feature-title">Community First</div>
-      <p class="feature-desc">Built to empower local communities and reduce unemployment.</p>
+      <p class="feature-desc">Built to empower local communities and reduce unemployment in J&K.</p>
     </div>
   </div>
 </section>
-
-<!-- TEAM (UNCHANGED) -->
-<section id="team">
-  <div class="team">
+  
+<!-- TEAM -->
+<section id="team" style="padding: 4rem 2%;">
+  <div class="team reveal" style="padding: 4rem;">
     <p class="section-tag">The Team</p>
     <h2 class="section-title">People Behind the Mission</h2>
-
-    <!-- SAME TEAM CARDS -->
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Syed Minhaj Hussain</div>
+        
+        <div class="team-role">Co-Founder</div>
+        <p class="team-quote">"Every worker deserves a fair chance. KaemKaar is how we make that happen."</p>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Syed Ali Andrabi</div>
+        <div class="team-role">Co-Founder</div>
+        <p class="team-quote">"I design for the person who has never used an app before. Simplicity is everything."</p>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Hazik Khalid</div>
+        <div class="team-role">Co-Founder & CTO</div>
+        <p class="team-quote">"Good code is invisible. The only thing users should see is a fast, reliable app."</p>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Mir Haziq</div>
+        <div class="team-role">CFO</div>
+        <p class="team-quote">"We don't just build users — we build trust within neighborhoods."</p>
+      </div>
+      <div class="team-card" style="justify-content:center;align-items:center;text-align:center;">
+        <div class="team-name" style="font-size:1.8rem;margin-bottom:0.4rem;">& More</div>
+        <div class="team-role">The Extended Team</div>
+        <p class="team-quote">Designers, researchers, field coordinators, and community builders working behind the scenes to make KaemKaar real.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">KaemKaar</div>
-  <div class="footer-copy">© 2026 KaemKaar. All rights reserved.</div>
+  <div class="footer-copy">© 2025 KaemKaar. All rights reserved.</div>
+  <div class="footer-copy">Made with ❤️ for local communities</div>
 </footer>
 
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
-
