@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll reveal logic
+    // Scroll Reveal Intersection Observer
     const revealEls = document.querySelectorAll('.reveal');
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -12,13 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealEls.forEach(el => observer.observe(el));
 
-    // Optional: Smooth scroll for nav links
+    // Smooth Scroll for Nav and Buttons
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     });
 });
