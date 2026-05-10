@@ -1,27 +1,40 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Reveal Intersection Observer
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
+const sheetName = 'Sheet1' // Name of your sheet tab
+const scriptProp = PropertiesService.getScriptProperties()
 
-    revealEls.forEach(el => observer.observe(el));
+function initialSetup () {
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  scriptProp.setProperty('key', activeSpreadsheet.getId())
+}
 
-    // Smooth Scroll for Nav and Buttons
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-});
+function doPost (e) {
+  const lock = LockService.getScriptLock()
+  lock.tryLock(10000)
+
+  try {
+    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+    const sheet = doc.getSheetByName(sheetName)
+
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+    const nextRow = sheet.getLastRow() + 1
+
+    const newRow = headers.map(function(header) {
+      return header === 'Date' ? new Date() : e.parameter[header]
+    })
+
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  catch (e) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  finally {
+    lock.releaseLock()
+  }
+}
