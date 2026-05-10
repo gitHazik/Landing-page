@@ -1,40 +1,53 @@
-const sheetName = 'Sheet1' // Name of your sheet tab
-const scriptProp = PropertiesService.getScriptProperties()
+document.addEventListener('DOMContentLoaded', () => {
 
-function initialSetup () {
-  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
-  scriptProp.setProperty('key', activeSpreadsheet.getId())
-}
+    // Scroll Reveal Intersection Observer
 
-function doPost (e) {
-  const lock = LockService.getScriptLock()
-  lock.tryLock(10000)
+    const revealEls = document.querySelectorAll('.reveal');
 
-  try {
-    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
-    const sheet = doc.getSheetByName(sheetName)
+    const observer = new IntersectionObserver((entries) => {
 
-    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
-    const nextRow = sheet.getLastRow() + 1
+        entries.forEach((entry) => {
 
-    const newRow = headers.map(function(header) {
-      return header === 'Date' ? new Date() : e.parameter[header]
-    })
+            if (entry.isIntersecting) {
 
-    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+                entry.target.classList.add('visible');
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
-      .setMimeType(ContentService.MimeType.JSON)
-  }
+            }
 
-  catch (e) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
-      .setMimeType(ContentService.MimeType.JSON)
-  }
+        });
 
-  finally {
-    lock.releaseLock()
-  }
-}
+    }, { threshold: 0.1 });
+
+
+
+    revealEls.forEach(el => observer.observe(el));
+
+
+
+    // Smooth Scroll for Nav and Buttons
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+        anchor.addEventListener('click', function (e) {
+
+            e.preventDefault();
+
+            const target = document.querySelector(this.getAttribute('href'));
+
+            if (target) {
+
+                target.scrollIntoView({
+
+                    behavior: 'smooth',
+
+                    block: 'start'
+
+                });
+
+            }
+
+        });
+
+    });
+
+});
