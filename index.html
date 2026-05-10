@@ -22,13 +22,20 @@
             display: flex;
             justify-content: center;
             padding: 2rem;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Waitlist Section Styling */
+        #waitlist {
+            width: 100%;
+            max-width: 500px;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .waitlist-container {
             background: var(--white);
             padding: 3rem;
             border-radius: 32px;
-            max-width: 500px;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             text-align: center;
@@ -62,6 +69,7 @@
             background: var(--card-bg);
             font-size: 1rem;
             box-sizing: border-box;
+            outline: none;
         }
 
         .btn-submit {
@@ -74,7 +82,6 @@
             width: 100%;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 1rem;
         }
 
         .btn-submit:hover {
@@ -87,54 +94,93 @@
             cursor: not-allowed;
         }
 
+        #skip-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            transition: color 0.3s;
+        }
+
+        #skip-btn:hover {
+            color: var(--red);
+        }
+
         #msg {
             margin-top: 1rem;
             font-size: 0.9rem;
             font-weight: 500;
+            min-height: 1.2em;
         }
     </style>
 </head>
 <body>
 
-    <div class="waitlist-container">
-        <h2>Join KaemKaar</h2>
-        <p style="color: var(--muted); margin-bottom: 2rem;">Be the first to access local jobs in J&K.</p>
+    <section id="waitlist">
+        <div class="waitlist-container">
+            <h2>Join KaemKaar</h2>
+            <p style="color: var(--muted); margin-bottom: 2rem;">Be the first to access local jobs in J&K.</p>
 
-        <form name="submit-to-google-sheet">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" name="Name" placeholder="e.g. Arif Khan" required>
-            </div>
+            <form name="submit-to-google-sheet">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="Name" placeholder="e.g. Arif Khan" required>
+                </div>
 
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" name="PhoneNo" placeholder="e.g. 9906XXXXXX" required>
-            </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="PhoneNo" placeholder="e.g. 9906XXXXXX" required>
+                </div>
 
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="Email" placeholder="name@email.com" required>
-            </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="Email" placeholder="name@email.com" required>
+                </div>
 
-            <div class="form-group">
-                <label>I want to join as</label>
-                <select name="Role" required>
-                    <option value="" disabled selected>Select your role</option>
-                    <option value="Worker">Worker (Looking for work)</option>
-                    <option value="Hirer">Hirer (Looking to hire)</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label>I want to join as</label>
+                    <select name="Role" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="Worker">Worker (Looking for work)</option>
+                        <option value="Hirer">Hirer (Looking to hire)</option>
+                    </select>
+                </div>
 
-            <button type="submit" class="btn-submit">Submit Registration →</button>
-        </form>
+                <div class="form-actions" style="margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center;">
+                    <button type="submit" class="btn-submit">Submit Registration →</button>
+                    <button type="button" id="skip-btn">Skip for now, show me the site</button>
+                </div>
+            </form>
 
-        <p id="msg"></p>
-    </div>
+            <p id="msg"></p>
+        </div>
+    </section>
 
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxSOlVLJq04sHFcOiRhkGopIZny6xPB7wENvyuaDg170nJMKZdKyOla6kxWnqOzjOd_Ng/exec';
         const form = document.forms['submit-to-google-sheet'];
         const msg = document.getElementById("msg");
+        const skipBtn = document.getElementById('skip-btn');
+        const waitlistSection = document.getElementById('waitlist');
+
+        // Logic to hide form and show homepage
+        function showHomepage() {
+            // If the landing page content is on the same page, scroll to it
+            // Otherwise, this fades the form out
+            waitlistSection.style.opacity = '0';
+            waitlistSection.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                waitlistSection.style.display = 'none';
+                // If your homepage sections have IDs like #hero or #about, 
+                // ensure they are not set to display:none in your main CSS.
+                const target = document.getElementById('about');
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            }, 600);
+        }
 
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -145,10 +191,12 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    msg.innerHTML = "Registration Successful! We'll be in touch.";
+                    msg.innerHTML = "Registration Successful! Redirecting...";
                     msg.style.color = "green";
                     submitBtn.innerHTML = "Success!";
-                    form.reset();
+                    
+                    // Redirect to homepage after 1.5 seconds
+                    setTimeout(showHomepage, 1500);
                 })
                 .catch(error => {
                     msg.innerHTML = "Something went wrong. Please try again.";
@@ -158,6 +206,9 @@
                     console.error('Error!', error.message);
                 });
         });
+
+        // Skip logic
+        skipBtn.addEventListener('click', showHomepage);
     </script>
 </body>
 </html>
