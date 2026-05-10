@@ -149,3 +149,19 @@ footer { padding: 3rem 5%; display: flex; justify-content: space-between; border
     .about { grid-template-columns: 1fr; }
     .nav-links { display: none; }
 }
+/* Add this to your style.css */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.thank-you-state {
+    text-align: center;
+    padding: 3rem;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
