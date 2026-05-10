@@ -51,3 +51,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+const scriptURL = 'YOUR_SCRIPT_URL_HERE'
+const form = document.forms['google-sheet']
+const btn = document.getElementById('submit-btn')
+const msg = document.getElementById('form-message')
+
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    btn.disabled = true
+    btn.innerHTML = "Sending..."
+    
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Success! You're on the list."
+            msg.style.display = "block"
+            msg.style.color = "green"
+            form.reset()
+            btn.disabled = false
+            btn.innerHTML = "Join the Waitlist →"
+        })
+        .catch(error => {
+            msg.innerHTML = "Error! Please try again."
+            msg.style.display = "block"
+            msg.style.color = "red"
+            btn.disabled = false
+        })
+})
