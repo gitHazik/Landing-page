@@ -1,186 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KaemKaar – Work Near You</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cream: #EDE0CC;
-            --red: #B22222;
-            --red-light: #C8392A;
-            --dark: #1A1008;
-            --muted: #7A6A55;
-            --card-bg: #F5ECD8;
-            --white: #FDFAF4;
-        }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--cream); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
-
-        /* --- WAITLIST OVERLAY --- */
-        #waitlist-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--cream);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .waitlist-container {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 32px;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .form-group { margin-bottom: 1rem; text-align: left; }
-        .form-group label { display: block; font-size: 0.7rem; font-weight: 700; margin-bottom: 0.4rem; text-transform: uppercase; color: var(--red); }
-        .form-group input, .form-group select { 
-            width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid rgba(26,16,8,0.1); 
-            background: var(--card-bg); outline: none; font-family: inherit;
-        }
-
-        .btn-submit { 
-            background: var(--red); color: var(--white); padding: 1rem; border-radius: 100px; 
-            border: none; width: 100%; cursor: pointer; font-weight: 500; margin-top: 1rem; 
-        }
-
-        #skip-btn { 
-            background: none; border: none; color: var(--muted); cursor: pointer; 
-            text-decoration: underline; font-size: 0.8rem; margin-top: 1rem; 
-        }
-
-        /* --- REST OF YOUR SITE STYLES --- */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1.2rem 5%; background: rgba(237, 224, 204, 0.85);
-            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(178,34,34,0.12);
-        }
-        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--red); }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; font-size: 0.85rem; font-weight: 500; color: var(--muted); text-transform: uppercase; }
-
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 5% 5rem; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.05; }
-        .hero h1 span { color: var(--red); }
-        .hero-sub { margin-top: 1.5rem; font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 520px; }
-
-        section { padding: 6rem 5%; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
-
-        footer { padding: 3rem 5%; text-align: center; border-top: 1px solid rgba(26,16,8,0.1); }
-    </style>
-</head>
 <body>
 
     <div id="waitlist-overlay">
         <div class="waitlist-container">
-            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem;">Kaem Kaar</h2>
-            <p style="color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem;">The future of work in J&K. Join the waitlist.</p>
-            
+
+            <h2 class="waitlist-title">
+                Kaem Kaar
+            </h2>
+
+            <p class="waitlist-sub">
+                The future of work in J&K. Join the waitlist.
+            </p>
+
             <form name="submit-to-google-sheet">
+
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input type="text" name="Name" required placeholder="Arif Khan">
+
+                    <input
+                        type="text"
+                        name="Name"
+                        required
+                        placeholder="Arif Khan"
+                    >
                 </div>
+
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="tel" name="PhoneNo" required placeholder="9906XXXXXX">
+
+                    <input
+                        type="tel"
+                        name="PhoneNo"
+                        required
+                        placeholder="9906XXXXXX"
+                    >
                 </div>
+
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" name="Email" required placeholder="arif@email.com">
+
+                    <input
+                        type="email"
+                        name="Email"
+                        required
+                        placeholder="arif@email.com"
+                    >
                 </div>
+
                 <div class="form-group">
                     <label>Role</label>
+
                     <select name="Role" required>
-                        <option value="" disabled selected>Select Role</option>
-                        <option value="Worker">Worker</option>
-                        <option value="Hirer">Hirer</option>
+                        <option value="" disabled selected>
+                            Select Role
+                        </option>
+
+                        <option value="Worker">
+                            Worker
+                        </option>
+
+                        <option value="Hirer">
+                            Hirer
+                        </option>
                     </select>
                 </div>
-                <button type="submit" class="btn-submit" id="submit-btn">Join Waitlist →</button>
-                <button type="button" id="skip-btn">Skip and explore site</button>
+
+                <button
+                    type="submit"
+                    class="btn-submit"
+                    id="submit-btn"
+                >
+                    Join Waitlist →
+                </button>
+
+                <button
+                    type="button"
+                    id="skip-btn"
+                >
+                    Skip and explore site
+                </button>
+
             </form>
-            <p id="msg" style="margin-top: 1rem; font-size: 0.8rem;"></p>
+
+            <p id="msg"></p>
+
         </div>
     </div>
 
+    <!-- NAV -->
     <nav>
         <div class="nav-logo">KaemKaar</div>
+
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#features">Features</a></li>
+            <li><a href="#waitlist">Waitlist</a></li>
             <li><a href="#team">Team</a></li>
+            <li><a href="#waitlist" class="nav-btn">Join Now</a></li>
         </ul>
     </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Find Work.<br>Hire <span>Local.</span></h1>
-            <p class="hero-sub">
-                Jammu & Kashmir's first gig marketplace. We connect workers and hirers directly across the valley.
-            </p>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title">Connecting Communities</h2>
-        <p>Kaem Kaar is a mobile-first marketplace connecting workers and hirers directly across J&K.</p>
-    </section>
-
-    <footer>
-        <div class="footer-logo">KaemKaar</div>
-        <div class="footer-copy">© 2026 KaemKaar. Made for J&K.</div>
-    </footer>
-
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxSOlVLJq04sHFcOiRhkGopIZny6xPB7wENvyuaDg170nJMKZdKyOla6kxWnqOzjOd_Ng/exec';
-        const form = document.forms['submit-to-google-sheet'];
-        const overlay = document.getElementById('waitlist-overlay');
-        const skipBtn = document.getElementById('skip-btn');
-        const msg = document.getElementById('msg');
-
-        function hideOverlay() {
-            overlay.style.opacity = '0';
-            overlay.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 600);
-        }
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.innerHTML = "Registering...";
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    msg.innerHTML = "Welcome! Opening site...";
-                    msg.style.color = "green";
-                    setTimeout(hideOverlay, 1500);
-                })
-                .catch(error => {
-                    msg.innerHTML = "Error. Please try again.";
-                    btn.disabled = false;
-                    btn.innerHTML = "Join Waitlist →";
-                });
-        });
-
-        skipBtn.addEventListener('click', hideOverlay);
-    </script>
-</body>
-</html>
