@@ -1,37 +1,74 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxSOlVLJq04sHFcOiRhkGopIZny6xPB7wENvyuaDg170nJMKZdKyOla6kxWnqOzjOd_Ng/exec';
-const form = document.forms['submit-to-google-sheet'];
-const waitlistSection = document.getElementById('waitlist'); 
-const msg = document.getElementById("msg");
+const scriptURL =
+    'https://script.google.com/macros/s/AKfycbxSOlVLJq04sHFcOiRhkGopIZny6xPB7wENvyuaDg170nJMKZdKyOla6kxWnqOzjOd_Ng/exec';
+
+const form =
+    document.forms['submit-to-google-sheet'];
+
+const overlay =
+    document.getElementById('waitlist-overlay');
+
+const skipBtn =
+    document.getElementById('skip-btn');
+
+const msg =
+    document.getElementById('msg');
+
+function hideOverlay() {
+    overlay.style.opacity = '0';
+    overlay.style.transform = 'scale(1.1)';
+
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 600);
+}
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    const submitBtn = form.querySelector('.btn-submit');
-    
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = "Joining...";
 
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            
-            submitBtn.innerHTML = "Welcome to the Team!";
-            msg.innerHTML = "Success! Redirecting you back...";
-            msg.style.color = "green";
+    const btn =
+        document.getElementById('submit-btn');
 
-            
-            setTimeout(() => {
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
+    btn.disabled = true;
+    btn.innerHTML = 'Registering...';
 
-                waitlistSection.style.display = 'none';
-                
-                document.querySelector('.btn-primary').innerHTML = "You're on the list! ✓";
-            }, 2000);
+    fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+        .then(() => {
+            msg.innerHTML =
+                'Welcome! Opening site...';
+
+            msg.style.color = 'green';
+
+            setTimeout(hideOverlay, 1500);
         })
-        .catch(error => {
-            msg.innerHTML = "Something went wrong. Please try again.";
-            msg.style.color = "var(--red)";
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = "Submit Registration →";
+        .catch(() => {
+            msg.innerHTML =
+                'Error. Please try again.';
+
+            btn.disabled = false;
+
+            btn.innerHTML =
+                'Join Waitlist →';
         });
+});
+
+skipBtn.addEventListener(
+    'click',
+    hideOverlay
+);
+
+const reveals =
+    document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+    reveals.forEach(reveal => {
+        const top =
+            reveal.getBoundingClientRect().top;
+
+        if (top < window.innerHeight - 100) {
+            reveal.classList.add('visible');
+        }
+    });
 });
