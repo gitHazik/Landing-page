@@ -1,4 +1,4 @@
-const scriptURL = 'YOUR_SCRIPT_URL_HERE';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxSOlVLJq04sHFcOiRhkGopIZny6xPB7wENvyuaDg170nJMKZdKyOla6kxWnqOzjOd_Ng/exec';
 const form = document.forms['submit-to-google-sheet'];
 const waitlistSection = document.getElementById('waitlist'); 
 const msg = document.getElementById("msg");
