@@ -560,3 +560,114 @@ footer {
         display: none;
     }
 }
+#waitlist-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+
+    background: var(--cream);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.waitlist-container {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 3rem;
+
+    background: var(--white);
+    border-radius: 32px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.waitlist-title {
+    margin-bottom: 0.5rem;
+
+    font-family: 'Playfair Display', serif;
+}
+
+.waitlist-sub {
+    margin-bottom: 2rem;
+
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 0.8rem;
+
+    background: var(--card-bg);
+    border: 1px solid rgba(26, 16, 8, 0.1);
+    border-radius: 12px;
+    outline: none;
+
+    font-family: inherit;
+}
+
+.btn-submit {
+    width: 100%;
+
+    margin-top: 1rem;
+    padding: 1rem;
+
+    background: var(--red);
+    color: var(--white);
+
+    border: none;
+    border-radius: 100px;
+
+    cursor: pointer;
+
+    font-weight: 500;
+}
+
+#skip-btn {
+    margin-top: 1rem;
+
+    background: none;
+    border: none;
+
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+#msg {
+    margin-top: 1rem;
+
+    font-size: 0.8rem;
+}
