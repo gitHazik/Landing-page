@@ -1,6 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        KaemKaar – Work Near You
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
 <body>
 
     <div id="waitlist-overlay">
+
         <div class="waitlist-container">
 
             <h2 class="waitlist-title">
@@ -8,13 +39,17 @@
             </h2>
 
             <p class="waitlist-sub">
-                The future of work in J&K. Join the waitlist.
+                The future of work in J&K.
+                Join the waitlist.
             </p>
 
             <form name="submit-to-google-sheet">
 
                 <div class="form-group">
-                    <label>Full Name</label>
+
+                    <label>
+                        Full Name
+                    </label>
 
                     <input
                         type="text"
@@ -22,10 +57,14 @@
                         required
                         placeholder="Arif Khan"
                     >
+
                 </div>
 
                 <div class="form-group">
-                    <label>Phone Number</label>
+
+                    <label>
+                        Phone Number
+                    </label>
 
                     <input
                         type="tel"
@@ -33,10 +72,14 @@
                         required
                         placeholder="9906XXXXXX"
                     >
+
                 </div>
 
                 <div class="form-group">
-                    <label>Email Address</label>
+
+                    <label>
+                        Email Address
+                    </label>
 
                     <input
                         type="email"
@@ -44,13 +87,24 @@
                         required
                         placeholder="arif@email.com"
                     >
+
                 </div>
 
                 <div class="form-group">
-                    <label>Role</label>
 
-                    <select name="Role" required>
-                        <option value="" disabled selected>
+                    <label>
+                        Role
+                    </label>
+
+                    <select
+                        name="Role"
+                        required
+                    >
+                        <option
+                            value=""
+                            disabled
+                            selected
+                        >
                             Select Role
                         </option>
 
@@ -62,6 +116,7 @@
                             Hirer
                         </option>
                     </select>
+
                 </div>
 
                 <button
@@ -84,17 +139,462 @@
             <p id="msg"></p>
 
         </div>
+
     </div>
 
-    <!-- NAV -->
     <nav>
-        <div class="nav-logo">KaemKaar</div>
+
+        <div class="nav-logo">
+            KaemKaar
+        </div>
 
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#waitlist">Waitlist</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#waitlist" class="nav-btn">Join Now</a></li>
+
+            <li>
+                <a href="#about">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="#features">
+                    Features
+                </a>
+            </li>
+
+            <li>
+                <a href="#waitlist">
+                    Waitlist
+                </a>
+            </li>
+
+            <li>
+                <a href="#team">
+                    Team
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="#waitlist"
+                    class="nav-btn"
+                >
+                    Join Now
+                </a>
+            </li>
+
         </ul>
+
     </nav>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                👷 Work Near You
+            </span>
+
+            <h1>
+                Find Work.<br>
+                Hire <span>Local.</span>
+            </h1>
+
+            <p class="hero-sub">
+                Jammu & Kashmir's first gig marketplace.
+                Kaem Kaar connects workers and hirers
+                across J&K — eliminating middlemen,
+                formalizing the informal economy,
+                and creating fair, flexible income
+                for Kashmir’s youth.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="#waitlist"
+                    class="btn-primary"
+                >
+                    Join the Waitlist →
+                </a>
+
+                <a
+                    href="#about"
+                    class="btn-secondary"
+                >
+                    Learn More
+                </a>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div>
+                    <div class="stat-num">
+                        J&K
+                    </div>
+
+                    <div class="stat-label">
+                        Priority Region
+                    </div>
+                </div>
+
+                <div>
+                    <div class="stat-num">
+                        0%
+                    </div>
+
+                    <div class="stat-label">
+                        Middleman Fees
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <div class="phone-mockup">
+
+                <div class="phone-screen">
+
+                    <div class="phone-bar">
+
+                        <div class="phone-brand">
+                            Kaem Kaar
+                        </div>
+
+                        <div class="phone-avatar"></div>
+
+                    </div>
+
+                    <div class="phone-greeting">
+                        Hello, 👋
+                    </div>
+
+                    <div class="phone-hello">
+                        Join the waitlist to<br>
+                        access local jobs.
+                    </div>
+
+                    <div class="phone-cards">
+
+                        <div class="phone-card">
+
+                            <div class="phone-card-icon">
+                                💼
+                            </div>
+
+                            <div class="phone-card-label">
+                                Status
+                            </div>
+
+                            <div class="phone-card-num">
+                                Early
+                            </div>
+
+                        </div>
+
+                        <div class="phone-card">
+
+                            <div class="phone-card-icon">
+                                💬
+                            </div>
+
+                            <div class="phone-card-label">
+                                Access
+                            </div>
+
+                            <div class="phone-card-num">
+                                Beta
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="phone-action">
+                        Sign Up Below
+                        <span>→</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="about">
+
+        <div class="about reveal">
+
+            <div class="about-text">
+
+                <p class="section-tag">
+                    What is KaemKaar
+                </p>
+
+                <h2 class="section-title">
+                    Connecting Communities Through Work
+                </h2>
+
+                <div class="about-quote">
+                    "Kaam Karo, Aage Badho."<br>
+                    Work. Grow. Thrive.
+                </div>
+
+                <p class="section-body">
+                    Kaem Kaar is a mobile-first
+                    marketplace connecting workers
+                    and hirers directly across J&K.
+                </p>
+
+            </div>
+
+            <div class="about-right">
+
+                <ul class="about-list">
+
+                    <li>
+                        <span class="dot"></span>
+
+                        <span>
+                            No digital platform exists
+                            for local J&K workers.
+                        </span>
+                    </li>
+
+                    <li>
+                        <span class="dot"></span>
+
+                        <span>
+                            Middlemen take up to
+                            30% of daily wages.
+                        </span>
+                    </li>
+
+                    <li>
+                        <span class="dot"></span>
+
+                        <span>
+                            Skilled workers lose
+                            daily earnings due to
+                            lack of visibility.
+                        </span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="features">
+
+        <div class="reveal">
+
+            <p class="section-tag">
+                Our Features
+            </p>
+
+            <h2 class="section-title">
+                Built for Real Work,
+                Real People
+            </h2>
+
+        </div>
+
+        <div class="features-grid">
+
+            <div class="feature-card reveal">
+
+                <span class="feature-icon">
+                    📍
+                </span>
+
+                <div class="feature-title">
+                    Hyperlocal Matching
+                </div>
+
+                <p class="feature-desc">
+                    Find workers and jobs
+                    within your area instantly.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal">
+
+                <span class="feature-icon">
+                    ⚡
+                </span>
+
+                <div class="feature-title">
+                    Instant Hiring
+                </div>
+
+                <p class="feature-desc">
+                    Post a job and hire
+                    within minutes.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal">
+
+                <span class="feature-icon">
+                    🛡️
+                </span>
+
+                <div class="feature-title">
+                    Verified Profiles
+                </div>
+
+                <p class="feature-desc">
+                    Trust built through ratings
+                    and verified history.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section
+        id="waitlist"
+        class="reveal"
+    >
+
+        <div class="waitlist-wrapper">
+
+            <p class="section-tag">
+                Early Access
+            </p>
+
+            <h2 class="section-title">
+                Join the Kaem Kaar Waitlist
+            </h2>
+
+            <p
+                class="section-body"
+                style="margin-bottom: 2rem;"
+            >
+                Be the first to know when we launch.
+                Workers and Hirers who join early
+                get priority access and referral rewards.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section id="team">
+
+        <div class="team reveal">
+
+            <p class="section-tag">
+                The Team
+            </p>
+
+            <h2 class="section-title">
+                People Behind the Mission
+            </h2>
+
+            <div class="team-grid">
+
+                <div class="team-card">
+
+                    <div class="team-name">
+                        Syed Minhaj Hussain
+                    </div>
+
+                    <div class="team-role">
+                        Co-Founder
+                    </div>
+
+                </div>
+
+                <div class="team-card">
+
+                    <div class="team-name">
+                        Syed Ali Andrabi
+                    </div>
+
+                    <div class="team-role">
+                        Co-Founder
+                    </div>
+
+                </div>
+
+                <div class="team-card">
+
+                    <div class="team-name">
+                        Hazik Khalid
+                    </div>
+
+                    <div class="team-role">
+                        Co-Founder & CTO
+                    </div>
+
+                </div>
+
+                <div class="team-card">
+
+                    <div class="team-name">
+                        Mir Hazik
+                    </div>
+
+                    <div class="team-role">
+                        CFO
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <a
+        href="https://wa.me/YOUR_NUMBER"
+        class="whatsapp-sticky"
+        target="_blank"
+        aria-label="Join our WhatsApp Community"
+    >
+
+        <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="white"
+        >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path>
+        </svg>
+
+    </a>
+
+    <footer>
+
+        <div class="footer-logo">
+            KaemKaar
+        </div>
+
+        <div class="footer-copy">
+            © 2026 KaemKaar.
+            All rights reserved.
+            Made for J&K.
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
