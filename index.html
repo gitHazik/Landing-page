@@ -1,600 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="KaemKaar — Jammu & Kashmir's first gig marketplace connecting workers and hirers. Find work near you, hire local talent, zero middlemen." />
+  <meta name="theme-color" content="#0D0805" />
+  <title>KaemKaar — Work Near You</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+    rel="stylesheet" />
 
-    <title>
-        KaemKaar – Work Near You
-    </title>
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="https://kaemkaar.in/assets/favicon-DvfGRQs.png" type="image/x-icon" />
 </head>
 
 <body>
 
-    <div id="waitlist-overlay">
+  <div id="waitlist-overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
 
-        <div class="waitlist-container">
+    <div class="waitlist-container">
 
-            <h2 class="waitlist-title">
-                Kaem Kaar
-            </h2>
+      <div class="overlay-header">
+        <span class="overlay-badge">🚀 Early Access Open</span>
+        <h2 class="waitlist-title" id="overlay-title">Join KaemKaar </h2>
+        <p class="waitlist-sub">The future of work in J&K.<br>Secure your spot before we launch.</p>
+      </div>
 
-            <p class="waitlist-sub">
-                The future of work in J&K.
-                Join the waitlist.
-            </p>
+      <div class="overlay-body">
+        <form name="submit-to-google-sheet" novalidate>
 
-            <form name="submit-to-google-sheet">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="Name" required placeholder="XYZ Khan" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="PhoneNo" required placeholder="+91XXXXXXXXXX" autocomplete="tel" />
+            </div>
+          </div>
 
-                <div class="form-group">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="Email" required placeholder="xyz@gmail.com" autocomplete="email" />
+          </div>
 
-                    <label>
-                        Full Name
-                    </label>
+          <div class="form-group">
+            <label for="role">I want to</label>
+            <select id="role" name="Role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="Worker">Find Work — I'm a Worker</option>
+              <option value="Hirer">Hire Talent — I'm a Hirer</option>
+            </select>
+          </div>
 
-                    <input
-                        type="text"
-                        name="Name"
-                        required
-                        placeholder="Arif Khan"
-                    >
+          <button type="submit" class="btn-submit" id="submit-btn">
+            Join the Waitlist →
+          </button>
 
-                </div>
+          <button type="button" id="skip-btn">Skip and explore the site</button>
 
-                <div class="form-group">
+        </form>
 
-                    <label>
-                        Phone Number
-                    </label>
-
-                    <input
-                        type="tel"
-                        name="PhoneNo"
-                        required
-                        placeholder="9906XXXXXX"
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Email Address
-                    </label>
-
-                    <input
-                        type="email"
-                        name="Email"
-                        required
-                        placeholder="arif@email.com"
-                    >
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Role
-                    </label>
-
-                    <select
-                        name="Role"
-                        required
-                    >
-                        <option
-                            value=""
-                            disabled
-                            selected
-                        >
-                            Select Role
-                        </option>
-
-                        <option value="Worker">
-                            Worker
-                        </option>
-
-                        <option value="Hirer">
-                            Hirer
-                        </option>
-                    </select>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="btn-submit"
-                    id="submit-btn"
-                >
-                    Join Waitlist →
-                </button>
-
-                <button
-                    type="button"
-                    id="skip-btn"
-                >
-                    Skip and explore site
-                </button>
-
-            </form>
-
-            <p id="msg"></p>
-
-        </div>
+        <p id="msg" role="alert"></p>
+      </div>
 
     </div>
 
-    <nav>
+  </div>
 
-        <div class="nav-logo">
-            KaemKaar
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="KaemKaar home">KaemKaar</a>
+
+    <div class="nav-center">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#team">Team</a>
+    </div>
+
+    <button class="nav-btn" id="join-btn">Join Waitlist</button>
+
+    <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" role="dialog" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#team">Team</a>
+    <button type="button" class="nav-btn-mobile" id="join-mobile-btn">Join Waitlist</button>
+  </div>
+  <div class="nav-overlay" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+
+    <div class="hero-content">
+      <span class="hero-badge">
+        <span class="pulse"></span>
+        J&amp;K's First Gig Marketplace
+      </span>
+
+      <h1 class="hero-heading" id="hero-heading">
+        Find Work.<br>
+        Hire <em>Local.</em><br>
+        <span class="line-accent">Zero</span> Middlemen.
+      </h1>
+
+      <p class="hero-sub">
+        Jammu &amp; Kashmir's first gig marketplace — connecting skilled workers
+        and hirers directly. Fair pay, verified talent, instant hiring.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#about" class="btn-secondary">Learn About KaemKaar</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num" data-target="0" data-suffix="%" aria-label="Zero percent">0%</div>
+          <div class="stat-label">Middleman Fees</div>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <div class="stat-num" style="font-size:1.6rem;padding-top:0.1rem;">J&amp;K</div>
+          <div class="stat-label">Priority Region</div>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="30" data-suffix="%" aria-label="Thirty percent">30%</div>
+          <div class="stat-label">More in Your Pocket</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHONE MOCKUP -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="phone-wrap">
+        <div class="phone-glow"></div>
+
+        <div class="phone-mockup" role="img" aria-label="KaemKaar app preview">
+          <!-- <div class="phone-island"></div> -->
+
+          <div class="phone-screen">
+
+            <!-- Status bar -->
+            <div class="phone-statusbar">
+              <span class="phone-time">9:41</span>
+              <div class="phone-indicators">
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+                  <rect x="0" y="4" width="3" height="7" rx="1" fill="currentColor" opacity=".4" />
+                  <rect x="4" y="2.5" width="3" height="8.5" rx="1" fill="currentColor" opacity=".6" />
+                  <rect x="8" y="1" width="3" height="10" rx="1" fill="currentColor" opacity=".8" />
+                  <rect x="12" y="0" width="3" height="11" rx="1" fill="currentColor" />
+                </svg>
+                <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                  <path
+                    d="M8 2.4C10.6 2.4 12.9 3.5 14.5 5.3L16 3.7C14 1.4 11.1 0 8 0 4.9 0 2 1.4 0 3.7L1.5 5.3C3.1 3.5 5.4 2.4 8 2.4Z"
+                    fill="currentColor" opacity=".4" />
+                  <path
+                    d="M8 5.6C9.7 5.6 11.2 6.3 12.3 7.5L13.8 5.9C12.3 4.3 10.3 3.2 8 3.2 5.7 3.2 3.7 4.3 2.2 5.9L3.7 7.5C4.8 6.3 6.3 5.6 8 5.6Z"
+                    fill="currentColor" opacity=".6" />
+                  <path d="M8 8.8C9.1 8.8 10 9.2 10.7 9.9L8 12.8 5.3 9.9C6 9.2 6.9 8.8 8 8.8Z" fill="currentColor" />
+                </svg>
+                <svg width="26" height="12" viewBox="0 0 26 12" fill="none">
+                  <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".35" />
+                  <rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor" />
+                  <path d="M23 4.5V7.5C23.8 7.2 24.5 6.5 24.5 6 24.5 5.5 23.8 4.8 23 4.5Z" fill="currentColor"
+                    opacity=".4" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Top bar -->
+            <div class="phone-topbar">
+              <div>
+                <div class="phone-greeting">As-Salamu Alaykum 👋</div>
+                <div class="phone-brand-name">KaemKaar</div>
+              </div>
+              <div class="phone-avatar">JK</div>
+            </div>
+
+            <!-- Quick stat chips -->
+            <div class="phone-chips">
+              <div class="phone-chip chip-active">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                240+ Workers
+              </div>
+              <div class="phone-chip">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                </svg>
+                18 Open Jobs
+              </div>
+            </div>
+
+            <!-- Job feed card -->
+            <div class="phone-card-main">
+              <div class="phone-card-header">
+                <div class="phone-card-tag">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Srinagar, Nowhatta
+                </div>
+                <div class="phone-card-badge">Urgent</div>
+              </div>
+              <div class="phone-card-title">Electrician Needed</div>
+              <div class="phone-card-meta">
+                <span>Full-day · ₹800–₹1,200</span>
+              </div>
+              <div class="phone-card-footer">
+                <div class="phone-card-avatars">
+                  <div class="mini-avatar" style="background:#C0271D">RK</div>
+                  <div class="mini-avatar" style="background:#D4783A">AM</div>
+                  <div class="mini-avatar" style="background:#826A52">SB</div>
+                </div>
+                <span class="phone-card-applicants">3 applied</span>
+              </div>
+            </div>
+
+            <!-- Second job card (partial) -->
+            <div class="phone-card-secondary">
+              <div class="phone-card-secondary-inner">
+                <div class="phone-secondary-icon">🔨</div>
+                <div>
+                  <div class="phone-secondary-title">Carpenter · Lal Chowk</div>
+                  <div class="phone-secondary-pay">₹600 / day</div>
+                </div>
+              </div>
+              <div class="phone-apply-btn">Apply</div>
+            </div>
+
+            <!-- Bottom nav bar -->
+            <div class="phone-bottomnav">
+              <div class="phone-nav-item active">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                </svg>
+              </div>
+              <div class="phone-nav-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </div>
+              <div class="phone-nav-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+            </div>
+
+          </div><!-- /phone-screen -->
+        </div><!-- /phone-mockup -->
+      </div><!-- /phone-wrap -->
+    </div><!-- /hero-visual -->
+
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="about-wrap reveal">
+
+      <div class="about-left">
+        <p class="section-eyebrow">What is KaemKaar</p>
+        <h2 class="section-title" id="about-heading">
+          Connecting Communities<br>
+          <em>Through Work</em>
+        </h2>
+
+        <div class="about-quote-block">
+          <p class="about-quote-text">"Kaam Karo, Aage Badho."</p>
+          <p class="about-quote-attribution">Work. Grow. Thrive.</p>
         </div>
 
-        <ul class="nav-links">
+        <p class="section-body">
+          KaemKaar is a mobile-first marketplace that directly connects skilled workers
+          and local hirers across J&amp;K — eliminating exploitative middlemen, formalizing
+          the informal economy, and creating fair, flexible income for Kashmir's youth.
+        </p>
+      </div>
 
-            <li>
-                <a href="#about">
-                    About
-                </a>
-            </li>
-
-            <li>
-                <a href="#features">
-                    Features
-                </a>
-            </li>
-
-            <li>
-                <a href="#waitlist">
-                    Waitlist
-                </a>
-            </li>
-
-            <li>
-                <a href="#team">
-                    Team
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="#waitlist"
-                    class="nav-btn"
-                >
-                    Join Now
-                </a>
-            </li>
-
+      <div class="about-right">
+        <ul class="problem-list" aria-label="Problems we solve">
+          <li class="problem-item">
+            <div class="problem-number" aria-hidden="true">01</div>
+            <div class="problem-text">
+              <strong>No digital platform</strong> exists for local J&amp;K workers.
+              Opportunity is invisible, undiscoverable, and lost daily.
+            </div>
+          </li>
+          <li class="problem-item">
+            <div class="problem-number" aria-hidden="true">02</div>
+            <div class="problem-text">
+              <strong>Middlemen pocket up to 30%</strong> of daily wages —
+              a tax on the hardest workers in the valley.
+            </div>
+          </li>
+          <li class="problem-item">
+            <div class="problem-number" aria-hidden="true">03</div>
+            <div class="problem-text">
+              <strong>Skilled workers go unseen.</strong> Without visibility,
+              talent is wasted and daily earnings disappear.
+            </div>
+          </li>
         </ul>
+      </div>
 
-    </nav>
+    </div>
+  </section>
 
-    <section class="hero">
+  <!-- FEATURES -->
+  <section id="features" aria-labelledby="features-heading">
+    <div class="features-header reveal">
+      <p class="section-eyebrow">Our Features</p>
+      <h2 class="section-title" id="features-heading">
+        Built for Real Work,<br>
+        <em>Real People</em>
+      </h2>
+      <p class="section-body">
+        Every feature is designed around the daily reality of J&amp;K's workers
+        and hirers — fast, simple, and trustworthy.
+      </p>
+    </div>
 
-        <div class="hero-content">
+    <div class="features-grid">
 
-            <span class="hero-tag">
-                👷 Work Near You
-            </span>
-
-            <h1>
-                Find Work.<br>
-                Hire <span>Local.</span>
-            </h1>
-
-            <p class="hero-sub">
-                Jammu & Kashmir's first gig marketplace.
-                Kaem Kaar connects workers and hirers
-                across J&K — eliminating middlemen,
-                formalizing the informal economy,
-                and creating fair, flexible income
-                for Kashmir’s youth.
-            </p>
-
-            <div class="hero-actions">
-
-                <a
-                    href="#waitlist"
-                    class="btn-primary"
-                >
-                    Join the Waitlist →
-                </a>
-
-                <a
-                    href="#about"
-                    class="btn-secondary"
-                >
-                    Learn More
-                </a>
-
-            </div>
-
-            <div class="hero-stats">
-
-                <div>
-                    <div class="stat-num">
-                        J&K
-                    </div>
-
-                    <div class="stat-label">
-                        Priority Region
-                    </div>
-                </div>
-
-                <div>
-                    <div class="stat-num">
-                        0%
-                    </div>
-
-                    <div class="stat-label">
-                        Middleman Fees
-                    </div>
-                </div>
-
-            </div>
-
+      <!-- Hyperlocal Matching -->
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
         </div>
+        <div class="feature-title">Hyperlocal Matching</div>
+        <p class="feature-desc">
+          Connect with verified workers and jobs within your own
+          neighbourhood — within minutes, not days.
+        </p>
+      </div>
 
-        <div class="hero-visual">
-
-            <div class="phone-mockup">
-
-                <div class="phone-screen">
-
-                    <div class="phone-bar">
-
-                        <div class="phone-brand">
-                            Kaem Kaar
-                        </div>
-
-                        <div class="phone-avatar"></div>
-
-                    </div>
-
-                    <div class="phone-greeting">
-                        Hello, 👋
-                    </div>
-
-                    <div class="phone-hello">
-                        Join the waitlist to<br>
-                        access local jobs.
-                    </div>
-
-                    <div class="phone-cards">
-
-                        <div class="phone-card">
-
-                            <div class="phone-card-icon">
-                                💼
-                            </div>
-
-                            <div class="phone-card-label">
-                                Status
-                            </div>
-
-                            <div class="phone-card-num">
-                                Early
-                            </div>
-
-                        </div>
-
-                        <div class="phone-card">
-
-                            <div class="phone-card-icon">
-                                💬
-                            </div>
-
-                            <div class="phone-card-label">
-                                Access
-                            </div>
-
-                            <div class="phone-card-num">
-                                Beta
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="phone-action">
-                        Sign Up Below
-                        <span>→</span>
-                    </div>
-
-                </div>
-
-            </div>
-
+      <!-- Instant Hiring -->
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
         </div>
+        <div class="feature-title">Instant Hiring</div>
+        <p class="feature-desc">
+          Post a job and get matched instantly. No calls to middlemen,
+          no waiting — hire when you need it.
+        </p>
+      </div>
 
-    </section>
-
-    <section id="about">
-
-        <div class="about reveal">
-
-            <div class="about-text">
-
-                <p class="section-tag">
-                    What is KaemKaar
-                </p>
-
-                <h2 class="section-title">
-                    Connecting Communities Through Work
-                </h2>
-
-                <div class="about-quote">
-                    "Kaam Karo, Aage Badho."<br>
-                    Work. Grow. Thrive.
-                </div>
-
-                <p class="section-body">
-                    Kaem Kaar is a mobile-first
-                    marketplace connecting workers
-                    and hirers directly across J&K.
-                </p>
-
-            </div>
-
-            <div class="about-right">
-
-                <ul class="about-list">
-
-                    <li>
-                        <span class="dot"></span>
-
-                        <span>
-                            No digital platform exists
-                            for local J&K workers.
-                        </span>
-                    </li>
-
-                    <li>
-                        <span class="dot"></span>
-
-                        <span>
-                            Middlemen take up to
-                            30% of daily wages.
-                        </span>
-                    </li>
-
-                    <li>
-                        <span class="dot"></span>
-
-                        <span>
-                            Skilled workers lose
-                            daily earnings due to
-                            lack of visibility.
-                        </span>
-                    </li>
-
-                </ul>
-
-            </div>
-
+      <!-- Verified Profiles -->
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
         </div>
-
-    </section>
-
-    <section id="features">
-
-        <div class="reveal">
-
-            <p class="section-tag">
-                Our Features
-            </p>
-
-            <h2 class="section-title">
-                Built for Real Work,
-                Real People
-            </h2>
-
-        </div>
-
-        <div class="features-grid">
-
-            <div class="feature-card reveal">
-
-                <span class="feature-icon">
-                    📍
-                </span>
-
-                <div class="feature-title">
-                    Hyperlocal Matching
-                </div>
-
-                <p class="feature-desc">
-                    Find workers and jobs
-                    within your area instantly.
-                </p>
-
-            </div>
-
-            <div class="feature-card reveal">
-
-                <span class="feature-icon">
-                    ⚡
-                </span>
-
-                <div class="feature-title">
-                    Instant Hiring
-                </div>
-
-                <p class="feature-desc">
-                    Post a job and hire
-                    within minutes.
-                </p>
-
-            </div>
-
-            <div class="feature-card reveal">
-
-                <span class="feature-icon">
-                    🛡️
-                </span>
-
-                <div class="feature-title">
-                    Verified Profiles
-                </div>
-
-                <p class="feature-desc">
-                    Trust built through ratings
-                    and verified history.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section
-        id="waitlist"
-        class="reveal"
-    >
-
-        <div class="waitlist-wrapper">
-
-            <p class="section-tag">
-                Early Access
-            </p>
-
-            <h2 class="section-title">
-                Join the Kaem Kaar Waitlist
-            </h2>
-
-            <p
-                class="section-body"
-                style="margin-bottom: 2rem;"
-            >
-                Be the first to know when we launch.
-                Workers and Hirers who join early
-                get priority access and referral rewards.
-            </p>
-
-        </div>
-
-    </section>
-
-    <section id="team">
-
-        <div class="team reveal">
-
-            <p class="section-tag">
-                The Team
-            </p>
-
-            <h2 class="section-title">
-                People Behind the Mission
-            </h2>
-
-            <div class="team-grid">
-
-                <div class="team-card">
-
-                    <div class="team-name">
-                        Syed Minhaj Hussain
-                    </div>
-
-                    <div class="team-role">
-                        Co-Founder
-                    </div>
-
-                </div>
-
-                <div class="team-card">
-
-                    <div class="team-name">
-                        Syed Ali Andrabi
-                    </div>
-
-                    <div class="team-role">
-                        Co-Founder
-                    </div>
-
-                </div>
-
-                <div class="team-card">
-
-                    <div class="team-name">
-                        Hazik Khalid
-                    </div>
-
-                    <div class="team-role">
-                        Co-Founder & CTO
-                    </div>
-
-                </div>
-
-                <div class="team-card">
-
-                    <div class="team-name">
-                        Mir Haziq
-                    </div>
-
-                    <div class="team-role">
-                        CFO
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <a
-        href="https://wa.me/YOUR_NUMBER"
-        class="whatsapp-sticky"
-        target="_blank"
-        aria-label="Join our WhatsApp Community"
-    >
-
-        <svg
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-            fill="white"
-        >
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path>
-        </svg>
-
-    </a>
-
-    <footer>
-
-        <div class="footer-logo">
-            KaemKaar
-        </div>
-
-        <div class="footer-copy">
-            © 2026 KaemKaar.
-            All rights reserved.
-            Made for J&K.
-        </div>
-
-    </footer>
-
-    <script src="script.js"></script>
-
+        <div class="feature-title">Verified Profiles</div>
+        <p class="feature-desc">
+          Trust built through transparent ratings, work history,
+          and identity verification — on both sides.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" aria-labelledby="team-heading">
+    <div class="team-header reveal">
+      <p class="section-eyebrow">The Team</p>
+      <h2 class="section-title" id="team-heading">
+        People Behind<br>
+        <em>the Mission</em>
+      </h2>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar" aria-hidden="true">SM</div>
+        <div class="team-name">Syed Minhaj Hussain</div>
+        <div class="team-role">Co-Founder</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar" aria-hidden="true">SA</div>
+        <div class="team-name">Syed Ali Andrabi</div>
+        <div class="team-role">Co-Founder</div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar" aria-hidden="true">HK</div>
+        <div class="team-name">Hazik Khalid</div>
+        <div class="team-role">Co-Founder &amp; CTO</div>
+      </div>
+      <div class="team-card reveal reveal-delay-4">
+        <div class="team-avatar" aria-hidden="true">MH</div>
+        <div class="team-name">Mir Haziq</div>
+        <div class="team-role">CFO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <button type="button" class="back-to-top" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- WHATSAPP STICKY -->
+  <a href="https://wa.me/+919103415743" class="whatsapp-sticky" target="_blank" rel="noopener noreferrer"
+    aria-label="Contact us on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
+    </svg>
+  </a>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-logo">KaemKaar</div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#team">Team</a>
+    </div>
+    <p class="footer-copy">© 2026 KaemKaar - All Rights Reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
