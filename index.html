@@ -20,60 +20,6 @@
 </head>
 
 <body>
-
-  <div id="waitlist-overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
-
-    <div class="waitlist-container">
-
-      <div class="overlay-header">
-        <span class="overlay-badge">🚀 Early Access Open</span>
-        <h2 class="waitlist-title" id="overlay-title">Join KaemKaar </h2>
-        <p class="waitlist-sub">The future of work in J&K.<br>Secure your spot before we launch.</p>
-      </div>
-
-      <div class="overlay-body">
-        <form name="submit-to-google-sheet" novalidate>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="Name" required placeholder="XYZ Khan" autocomplete="name" />
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="PhoneNo" required placeholder="+91XXXXXXXXXX" autocomplete="tel" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="Email" required placeholder="xyz@gmail.com" autocomplete="email" />
-          </div>
-
-          <div class="form-group">
-            <label for="role">I want to</label>
-            <select id="role" name="Role" required>
-              <option value="" disabled selected>Select your role</option>
-              <option value="Worker">Find Work — I'm a Worker</option>
-              <option value="Hirer">Hire Talent — I'm a Hirer</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn-submit" id="submit-btn">
-            Join the Waitlist →
-          </button>
-
-          <button type="button" id="skip-btn">Skip and explore the site</button>
-
-        </form>
-
-        <p id="msg" role="alert"></p>
-      </div>
-
-    </div>
-
-  </div>
-
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <a href="#" class="nav-logo" aria-label="KaemKaar home">KaemKaar</a>
@@ -83,8 +29,6 @@
       <a href="#features">Features</a>
       <a href="#team">Team</a>
     </div>
-
-    <button class="nav-btn" id="join-btn">Join Waitlist</button>
 
     <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -96,7 +40,6 @@
     <a href="#about">About</a>
     <a href="#features">Features</a>
     <a href="#team">Team</a>
-    <button type="button" class="nav-btn-mobile" id="join-mobile-btn">Join Waitlist</button>
   </div>
   <div class="nav-overlay" aria-hidden="true"></div>
 
